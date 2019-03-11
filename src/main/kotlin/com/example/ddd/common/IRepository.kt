@@ -1,3 +1,3 @@
-package com.example.ddd.common.domain
+package com.example.ddd.common
 
 interface IRepository<T : AggregateRoot>

@@ -1,6 +1,5 @@
-package com.example.ddd.common.domain
+package com.example.ddd.common
 
-import com.example.ddd.common.errors.ErrorCollection
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.support.TransactionTemplate
 

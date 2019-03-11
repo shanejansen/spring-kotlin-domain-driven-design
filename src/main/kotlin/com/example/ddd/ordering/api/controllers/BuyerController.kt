@@ -1,6 +1,6 @@
 package com.example.ddd.ordering.api.controllers
 
-import com.example.ddd.common.errors.ErrorCollection
+import com.example.ddd.common.ErrorCollection
 import com.example.ddd.ordering.api.commands.CreateBuyerCommand
 import com.example.ddd.ordering.api.commands.CreateBuyerCommandHandler
 import com.example.ddd.ordering.api.queries.BuyerQuery

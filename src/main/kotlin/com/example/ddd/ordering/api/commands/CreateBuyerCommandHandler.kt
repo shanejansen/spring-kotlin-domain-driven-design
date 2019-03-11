@@ -1,8 +1,8 @@
 package com.example.ddd.ordering.api.commands
 
-import com.example.ddd.common.domain.CommandHandler
-import com.example.ddd.common.domain.CommandHandlerResult
-import com.example.ddd.common.errors.ErrorCollection
+import com.example.ddd.common.CommandHandler
+import com.example.ddd.common.CommandHandlerResult
+import com.example.ddd.common.ErrorCollection
 import com.example.ddd.ordering.domain.aggregates.buyer.*
 import org.springframework.stereotype.Service
 

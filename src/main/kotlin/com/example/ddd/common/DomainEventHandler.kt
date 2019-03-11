@@ -1,6 +1,5 @@
-package com.example.ddd.common.domain
+package com.example.ddd.common
 
-import com.example.ddd.common.errors.ErrorCollection
 import kotlin.reflect.KClass
 
 abstract class DomainEventHandler<T : IDomainEvent>(private var handledType: KClass<T>) {

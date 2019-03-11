@@ -1,4 +1,4 @@
-package com.example.ddd.common.domain
+package com.example.ddd.common
 
 abstract class AggregateRoot {
     private val _domainEvents: MutableList<IDomainEvent> = mutableListOf()

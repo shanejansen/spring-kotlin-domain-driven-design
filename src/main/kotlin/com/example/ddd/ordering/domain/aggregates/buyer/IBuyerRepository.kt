@@ -1,6 +1,6 @@
 package com.example.ddd.ordering.domain.aggregates.buyer
 
-import com.example.ddd.common.domain.IRepository
+import com.example.ddd.common.IRepository
 
 interface IBuyerRepository : IRepository<Buyer> {
     fun existsWithEmail(email: String): Boolean

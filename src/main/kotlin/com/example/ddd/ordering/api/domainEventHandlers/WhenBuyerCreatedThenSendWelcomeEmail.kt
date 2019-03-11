@@ -1,8 +1,8 @@
 package com.example.ddd.ordering.api.domainEventHandlers
 
-import com.example.ddd.common.domain.DomainEventHandler
-import com.example.ddd.common.domain.IDomainEvent
-import com.example.ddd.common.errors.ErrorCollection
+import com.example.ddd.common.DomainEventHandler
+import com.example.ddd.common.ErrorCollection
+import com.example.ddd.common.IDomainEvent
 import com.example.ddd.ordering.domain.events.BuyerCreatedEvent
 import org.springframework.stereotype.Component
 

@@ -1,4 +1,10 @@
-package com.example.ddd.common.errors
+package com.example.ddd.common
+
+class Error(private val message: String) {
+    fun toDto() = ErrorDto(message)
+}
+
+data class ErrorDto(val message: String)
 
 class ErrorCollection(private val errors: MutableList<Error> = mutableListOf()) {
     companion object {
@@ -17,3 +23,5 @@ class ErrorCollection(private val errors: MutableList<Error> = mutableListOf()) 
 
     fun toDto() = ErrorCollectionDto(errors.map { it.toDto() })
 }
+
+data class ErrorCollectionDto(val errors: List<ErrorDto>)
