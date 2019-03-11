@@ -1,14 +1,14 @@
 package com.example.ddd.common
 
 abstract class AggregateRoot {
-    private val _domainEvents: MutableList<IDomainEvent> = mutableListOf()
-    val domainEvents: List<IDomainEvent> get() = _domainEvents
+    private val _domainEvents: MutableList<DomainEvent> = mutableListOf()
+    val domainEvents: List<DomainEvent> get() = _domainEvents
 
-    fun addDomainEvent(domainEvent: IDomainEvent) {
+    fun addDomainEvent(domainEvent: DomainEvent) {
         _domainEvents.add(domainEvent)
     }
 
-    fun removeDomainEvent(domainEvent: IDomainEvent) {
+    fun removeDomainEvent(domainEvent: DomainEvent) {
         _domainEvents.remove(domainEvent)
     }
 }

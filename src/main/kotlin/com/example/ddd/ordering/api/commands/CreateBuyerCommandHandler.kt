@@ -5,10 +5,12 @@ import com.example.ddd.common.CommandHandlerResult
 import com.example.ddd.common.ErrorCollection
 import com.example.ddd.ordering.domain.aggregates.buyer.*
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-class CreateBuyerCommandHandler(private val buyerRepository: IBuyerRepository) : CommandHandler<CreateBuyerCommand, BuyerId>() {
-    override fun process(command: CreateBuyerCommand): CommandHandlerResult<BuyerId> {
+class CreateBuyerCommandHandler(private val buyerRepository: IBuyerRepository) : CommandHandler() {
+    @Transactional
+    fun createBuyer(command: CreateBuyerCommand): CommandHandlerResult<BuyerId> {
         if (buyerRepository.existsWithEmail(command.email)) {
             return CommandHandlerResult(
                     value = BuyerId(),
@@ -19,7 +21,7 @@ class CreateBuyerCommandHandler(private val buyerRepository: IBuyerRepository) :
                 email = Email(command.email))
         buyerRepository.save(buyer)
 
-        return CommandHandlerResult(value = buyer.id,
-                errorCollection = dispatchDomainEvents(buyer.domainEvents))
+        publishDomainEvents(buyer.domainEvents)
+        return CommandHandlerResult(value = buyer.id)
     }
 }
