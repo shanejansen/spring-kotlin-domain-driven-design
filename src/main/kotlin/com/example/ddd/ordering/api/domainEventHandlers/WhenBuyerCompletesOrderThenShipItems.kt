@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class WhenBuyerCompletesOrderThenShipItems : IDomainEventHandler<BuyerCompletedOrderEvent> {
-    override fun onApplicationEvent(event: BuyerCompletedOrderEvent) {
-        print(event)
+    override fun onApplicationEvent(domainEvent: BuyerCompletedOrderEvent) {
+        print(domainEvent)
     }
 }

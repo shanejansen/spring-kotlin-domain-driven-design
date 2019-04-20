@@ -1,15 +1,6 @@
 version: "3.1"
 
 services:
-  app:
-    build: .
-    restart: on-failure
-    volumes:
-      - m2-repo:/root/.m2/repository
-    ports:
-      - 8080:8080
-      - 5005:5005
-
   mysql:
     image: mysql:5.7
     environment:
@@ -17,6 +8,3 @@ services:
       MYSQL_DATABASE: test
     ports:
       - 3306:3306
-
-volumes:
-  m2-repo:

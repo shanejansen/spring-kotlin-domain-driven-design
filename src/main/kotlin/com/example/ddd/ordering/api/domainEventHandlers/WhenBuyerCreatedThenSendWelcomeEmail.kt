@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class WhenBuyerCreatedThenSendWelcomeEmail : IDomainEventHandler<BuyerCreatedEvent> {
-    override fun onApplicationEvent(event: BuyerCreatedEvent) {
-        print("Send email to welcome the new buyer: $event")
+    override fun onApplicationEvent(domainEvent: BuyerCreatedEvent) {
+        print(domainEvent)
     }
 }

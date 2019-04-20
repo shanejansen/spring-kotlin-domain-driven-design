@@ -1,22 +1,27 @@
 package com.example.ddd.ordering.api.commands
 
 import com.example.ddd.common.CommandHandler
-import com.example.ddd.common.DomainEvent
-import com.example.ddd.ordering.domain.buyer.Buyer
-import com.example.ddd.ordering.domain.buyer.IBuyerRepository
-import com.example.ddd.ordering.domain.buyer.Name
+import com.example.ddd.common.CommandHandlerResult
+import com.example.ddd.common.ErrorCollection
+import com.example.ddd.ordering.domain.aggregates.buyer.*
 import org.springframework.stereotype.Service
-import java.lang.RuntimeException
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-class CreateBuyerCommandHandler(private val buyerRepository: IBuyerRepository) : CommandHandler<CreateBuyerCommand>() {
-    override fun execute(command: CreateBuyerCommand): List<DomainEvent> {
+class CreateBuyerCommandHandler(private val buyerRepository: IBuyerRepository) : CommandHandler() {
+    @Transactional
+    fun createBuyer(command: CreateBuyerCommand): CommandHandlerResult<BuyerId> {
         if (buyerRepository.existsWithEmail(command.email)) {
-            // TODO: Implement error handling
-            throw RuntimeException("Email already exists")
+            return CommandHandlerResult(
+                    value = BuyerId(),
+                    errorCollection = ErrorCollection.withError("This email has already been registered."))
         }
-        val buyer = Buyer(name = Name(command.firstName, command.lastName), email = command.email)
+        val buyer = Buyer(
+                name = Name(command.firstName, command.lastName),
+                email = Email(command.email))
         buyerRepository.save(buyer)
-        return buyer.domainEvents
+
+        publishDomainEvents(buyer.domainEvents)
+        return CommandHandlerResult(value = buyer.id)
     }
 }

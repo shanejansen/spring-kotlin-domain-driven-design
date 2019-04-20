@@ -1,8 +1,8 @@
 package com.example.ddd.ordering.infrastructure.repositories
 
-import com.example.ddd.ordering.domain.buyer.Buyer
-import com.example.ddd.ordering.domain.buyer.IBuyerRepository
-import org.intellij.lang.annotations.Language
+import com.example.ddd.ordering.domain.aggregates.buyer.Buyer
+import com.example.ddd.ordering.domain.aggregates.buyer.BuyerId
+import com.example.ddd.ordering.domain.aggregates.buyer.IBuyerRepository
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.jdbc.support.GeneratedKeyHolder
@@ -35,11 +35,11 @@ class BuyerRepository(private val jdbcTemplate: NamedParameterJdbcTemplate) : IB
                 MapSqlParameterSource(mapOf(
                         "firstName" to buyer.name.firstName,
                         "lastName" to buyer.name.lastName,
-                        "email" to buyer.email
+                        "email" to buyer.email.address
                 )),
                 keyHolder)
         val id = keyHolder.key!!.toInt()
-        buyer.id = id
+        buyer.id = BuyerId(id)
     }
 
     override fun update(buyer: Buyer) {

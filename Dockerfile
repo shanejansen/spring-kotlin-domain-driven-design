@@ -1,7 +1,34 @@
-FROM openjdk:8-alpine
+### BUILDER IMAGE ###
+FROM openjdk:8-alpine AS build
+  
+# Setup
+WORKDIR /app
+COPY .mvn .mvn
+COPY mvnw pom.xml ./
+
+# Resolve Maven dependencies
+RUN ./mvnw -B dependency:resolve-plugins dependency:resolve
+
+# Copy remaining source files and build
+COPY . .
+RUN ./mvnw -DskipTests clean package
+
+
+
+### RUNNER IMAGE ###
+FROM openjdk:8-jre-alpine AS run
 
 # Setup
 WORKDIR /app
-COPY . .
 
-CMD ./mvnw -DskipTests clean package && java -agentlib:jdwp=transport=dt_socket,address=5005,suspend=n,server=y -Dcom.sun.management.jmxremote.rmi.port=9090 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=9090 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false -Djava.rmi.server.hostname=localhost -jar /app/target/ddd-0.0.1-SNAPSHOT.jar
+# Copy build artifact and run
+COPY --from=build /app/target/ddd-0.0.1-SNAPSHOT.jar ./app.jar
+CMD java -jar /app/app.jar
+
+
+
+### TESTING IMAGE ###
+FROM build AS test
+
+# Run tests
+CMD ./mvnw test

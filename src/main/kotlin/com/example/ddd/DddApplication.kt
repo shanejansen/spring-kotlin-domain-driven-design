@@ -9,4 +9,3 @@ class DddApplication
 fun main(args: Array<String>) {
 	runApplication<DddApplication>(*args)
 }
-

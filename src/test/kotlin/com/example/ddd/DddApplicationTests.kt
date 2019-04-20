@@ -1,4 +1,4 @@
-package com.example.ddd.ddd
+package com.example.ddd
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -8,10 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner
 @RunWith(SpringRunner::class)
 @SpringBootTest
 class DddApplicationTests {
-
-	@Test
-	fun contextLoads() {
-	}
-
+    @Test
+    fun contextLoads() {
+    }
 }
-
