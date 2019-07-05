@@ -3,7 +3,7 @@ package com.example.ddd.ordering.api.commands
 import com.example.ddd.common.CommandHandler
 import com.example.ddd.common.CommandHandlerResult
 import com.example.ddd.common.ErrorCollection
-import com.example.ddd.ordering.domain.aggregates.buyer.*
+import com.example.ddd.ordering.domain.buyer.*
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

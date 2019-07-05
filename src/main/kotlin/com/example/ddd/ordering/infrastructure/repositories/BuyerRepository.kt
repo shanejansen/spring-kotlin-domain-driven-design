@@ -1,8 +1,8 @@
 package com.example.ddd.ordering.infrastructure.repositories
 
-import com.example.ddd.ordering.domain.aggregates.buyer.Buyer
-import com.example.ddd.ordering.domain.aggregates.buyer.BuyerId
-import com.example.ddd.ordering.domain.aggregates.buyer.IBuyerRepository
+import com.example.ddd.ordering.domain.buyer.Buyer
+import com.example.ddd.ordering.domain.buyer.BuyerId
+import com.example.ddd.ordering.domain.buyer.IBuyerRepository
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.jdbc.support.GeneratedKeyHolder

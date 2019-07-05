@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class DddApplication
 
 fun main(args: Array<String>) {
-	runApplication<DddApplication>(*args)
+    runApplication<DddApplication>(*args)
 }

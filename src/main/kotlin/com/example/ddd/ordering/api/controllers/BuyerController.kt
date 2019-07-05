@@ -19,7 +19,7 @@ class BuyerController(val buyerQuery: BuyerQuery,
     }
 
     @PostMapping("/buyer")
-    fun postBuyer(@RequestBody createBuyerCommand: CreateBuyerCommand): ResponseEntity<*> {
+    fun createBuyer(@RequestBody createBuyerCommand: CreateBuyerCommand): ResponseEntity<*> {
         val result = createBuyerCommandHandler.createBuyer(createBuyerCommand)
         if (result.hasErrors()) return ResponseEntity(result.errorCollection.toDto(), HttpStatus.BAD_REQUEST)
         return getBuyer(result.value.id)

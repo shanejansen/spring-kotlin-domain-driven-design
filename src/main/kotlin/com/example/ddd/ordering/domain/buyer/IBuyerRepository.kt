@@ -1,4 +1,4 @@
-package com.example.ddd.ordering.domain.aggregates.buyer
+package com.example.ddd.ordering.domain.buyer
 
 import com.example.ddd.common.IRepository
 
